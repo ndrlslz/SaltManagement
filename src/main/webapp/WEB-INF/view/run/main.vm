@@ -1,0 +1,92 @@
+#parse("/header.vm")
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/main/main.do">Overview <span class="sr-only">(current)</span></a></li>
+                <li><a href="/key/list.do">Key</a></li>
+                <li><a href="/run/main.do">CmdRun</a></li>
+            </ul>
+
+        </div>
+
+        <br />
+        <br />
+
+        <div class="col-md-10 col-md-offset-2">
+            <div class="row">
+                <div class="col-md-10">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">minion</label>
+
+                            <div class="col-sm-10">
+                                <select id="minion" class="form-control">
+                                    <option value="*">all minons</option>
+                                    #foreach($minion in $!minions)
+                                        <option name="$minion">$minion</option>
+                                    #end
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputCommand" class="col-sm-2 control-label">Command</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" id="command" class="form-control" id="inputCommand" name="command">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="button" class="btn btn-default">Run</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="result" class="col-sm-2 control-label">Result</label>
+
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <pre id="result"></pre>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $("form :button").click(function () {
+                $("#result").html("runing, please wait");
+                var minion = $("#minion").val();
+                var command = $("#command").val();
+                $.ajax({
+                    type: "post",
+                    url: "/run/runCommand.do",
+                    dataType: "text",
+                    data: {minion: minion, command: command},
+                    success: function (data) {
+                        $("#result").html(data);
+                    },
+                    error: function() {
+                        $("#result").html("can not connect to master server or server meet some errors.")
+                    }
+                });
+            });
+        });
+    });
+
+</script>
+
+<link href="../../../bootstrap/css/dashboard.css" rel="stylesheet">
+<script src="../../../bootstrap/js/holder.js"></script>
+

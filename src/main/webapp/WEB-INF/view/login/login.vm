@@ -1,0 +1,18 @@
+<div class="container">
+
+    <form class="form-signin" method="post" action="/account/check.do">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required
+               autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+
+        #if($!{success} == 'false')
+            <label for="errorAccount">账号或密码错误</label>
+        #end
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>
+
+<link href="../../../bootstrap/css/signin.css" rel="stylesheet">

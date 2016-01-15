@@ -1,0 +1,31 @@
+#parse("/header.vm")
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/main/main.do">Overview <span class="sr-only">(current)</span></a></li>
+                <li><a href="/key/list.do">Key</a></li>
+                <li><a href="/run/main.do">CmdRun</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron col-md-offset-3">
+        <h1>Welcome</h1>
+        <p>This example is a Salt Management DEMO.</p>
+        <p>To see the salt document.</p>
+        <p>
+            <a class="btn btn-lg btn-success" href="https://docs.saltstack.com/en/latest/" role="button">Learn Salt &raquo;</a>
+        </p>
+    </div>
+
+</div> <!-- /container -->
+
+<link href="../../../bootstrap/css/dashboard.css" rel="stylesheet">

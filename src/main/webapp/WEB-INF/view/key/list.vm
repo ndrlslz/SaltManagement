@@ -1,0 +1,113 @@
+#parse("/header.vm")
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/main/main.do">Overview <span class="sr-only">(current)</span></a></li>
+                <li><a href="/key/list.do">Key</a></li>
+                <li><a href="/run/main.do">CmdRun</a></li>
+            </ul>
+
+        </div>
+
+        <div class="col-md-10 col-md-offset-2">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1 class="page-header">Dashboard</h1>
+
+                    <div class="row placeholders">
+                        <div class="col-xs-6 col-sm-3 placeholder">
+##                            <img data-src="holder.js/200x200/auto/sky" class="img-responsive"
+##                                 alt="Generic placeholder thumbnail">
+                            <h4>Accepted count</h4>
+                            <h3>$minionsCount</h3>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 placeholder">
+##                            <img data-src="holder.js/200x200/auto/vine" class="img-responsive"
+##                                 alt="Generic placeholder thumbnail">
+                            <h4>Unaccepted count</h4>
+                            <h3>$minionsPreCount</h3>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 placeholder">
+##                            <img data-src="holder.js/200x200/auto/sky" class="img-responsive"
+##                                 alt="Generic placeholder thumbnail">
+                            <h4>Denied count</h4>
+                            <h3>$minionsDeniedCount</h3>
+                        </div>
+                        <div class="col-xs-6 col-sm-3 placeholder">
+##                            <img data-src="holder.js/200x200/auto/vine" class="img-responsive"
+##                                 alt="Generic placeholder thumbnail">
+                            <h4>Rejected count</h4>
+                            <h3>$minionsRejectedCount</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-5">
+                    <h2 class="sub-header">Accepted minions</h2>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>minion_id</th>
+                                <th>option</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                #foreach($minion in $keys.minions)
+                                <tr>
+                                    <td>$minion</td>
+                                    <td><button type="button" class="btn btn-danger btn-sm">删除</button></td>
+                                </tr>
+                                #end
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <h2 class="sub-header">Unaccepted minions</h2>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>minion_id</th>
+                                <th>option</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                #foreach($minion in $keys.minionsPre)
+                                <tr>
+                                    <td>$minion</td>
+                                    <td>
+                                        <form action="/key/accept.do" method="post">
+                                            <button type="submit" class="btn btn-info btn-sm" name="minionId" value="$minion">接受</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                #end
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+<link href="../../../bootstrap/css/dashboard.css" rel="stylesheet">
+<script src="../../../bootstrap/js/holder.js"></script>
+
+
+
